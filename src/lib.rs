@@ -1,3 +1,6 @@
-mod commands;
-mod selector_command;
-mod executor;
+pub mod commands;
+pub mod selector_command;
+pub mod primitives;
+pub mod host_state;
+pub mod executor;
+

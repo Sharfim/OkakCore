@@ -12,7 +12,7 @@ pub fn voter_command(text: &str, key_words: &HashMap<String, Vec<String>>) -> Op
             }
         }
         match command_key {
-            Some(ref option_value) => break,
+            Some(_) => break,
             None => {},
         }
     }

@@ -1,12 +1,9 @@
 use crate::commands::{all_commands, Command};
 use crate::selector_command::voter_command;
+use crate::host_state::HostState;
 use std::collections::HashMap;
 
-use std::time::Instant;
-
-pub fn executor(text: &str) {
-    let start = Instant::now();
-
+pub fn executor(text: &str, host_state: &HostState) {
     let vec_commands: Vec<Command> = all_commands();
     let mut key_words: HashMap<String, Vec<String>> = HashMap::new();
 
@@ -32,7 +29,7 @@ pub fn executor(text: &str) {
             return;
         }
     }
-    let mut selected_command: Option<fn(&str)> = None;
+    let mut selected_command: Option<fn(&str, &HostState)> = None;
 
     for command in &vec_commands {
         if command.name.to_string() == key_selected_command {
@@ -42,10 +39,7 @@ pub fn executor(text: &str) {
     }
 
     match selected_command {
-        Some(f) => f(text),
+        Some(f) => f(text, host_state),
         None => println!("Err: command not found"),
     }
-
-    let elapsed = start.elapsed();
-    println!("Заняло: {:?}", elapsed);
 }
