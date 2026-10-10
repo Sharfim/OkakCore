@@ -23,7 +23,7 @@ fn execute(_text: &str, _host_state: &HostState) {
 pub fn create_command() -> Command {
     Command {
         name: "open_yotube",
-        key_words: vec!["ютуб"],
+        key_words: vec!["ютуб", "ютубчик", "открой",],
         execute: execute,
     }
 }
